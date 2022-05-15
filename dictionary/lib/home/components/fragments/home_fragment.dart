@@ -1,6 +1,7 @@
 import 'package:dictionary/history/historypage.dart';
 import 'package:dictionary/home/homepage.dart';
 import 'package:dictionary/paragraph/paragraphpage.dart';
+import 'package:dictionary/translate/translatepage.dart';
 import 'package:flutter/material.dart';
 
 class HomeDetail extends StatefulWidget {
@@ -47,29 +48,27 @@ class _HomeDetailState extends State<HomeDetail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  border: const OutlineInputBorder(),
-                  hintText: 'Tra từ Anh-Việt, Việt-Anh',
-                  suffix: GestureDetector(
-                    onTap: (){},
-                    child: const Icon(Icons.mic_outlined,color: Colors.grey,),
-                  )
-              ),
-            ),
-            const SizedBox(height: 40,),
-            buildItem(text: 'Từ điển', routeName: HomePage.routeName, icon: Icons.bookmark),
+            // TextField(
+            //   decoration: InputDecoration(
+            //       prefixIcon: const Icon(Icons.search),
+            //       border: const OutlineInputBorder(),
+            //       hintText: 'Tra từ Anh-Việt, Việt-Anh',
+            //       suffix: GestureDetector(
+            //         onTap: (){},
+            //         child: const Icon(Icons.mic_outlined,color: Colors.grey,),
+            //       )
+            //   ),
+            // ),
+            const SizedBox(height: 20,),
+            buildItem(text: 'Tra từ', routeName: TranslatePage.routeName, icon: Icons.bookmark),
             const SizedBox(height: 20,),
             buildItem(text: 'Dịch văn bản', routeName: ParagraphPage.routeName, icon: Icons.file_copy_rounded),
             const SizedBox(height: 20,),
-            buildItem(text: 'Lịch sử', routeName: HistoryPage.routeName, icon: Icons.settings_backup_restore),
+            buildItem(text: 'Lịch sử tra từ', routeName: HistoryPage.routeName, icon: Icons.settings_backup_restore),
             const SizedBox(height: 20,),
-            buildItem(text: 'Đánh dấu', routeName: '', icon: Icons.stars_rounded),
+            buildItem(text: 'Từ đánh dấu', routeName: '', icon: Icons.stars_rounded),
             const SizedBox(height: 20,),
-            buildItem(text: 'Ngữ pháp', routeName: '', icon: Icons.book_rounded),
-            const SizedBox(height: 20,),
-            buildItem(text: 'Video theo chủ đề', routeName: '', icon: Icons.play_circle_fill_outlined),
+            buildItem(text: 'Video ứng dụng', routeName: '', icon: Icons.play_circle_fill_outlined),
           ],
         )
     );

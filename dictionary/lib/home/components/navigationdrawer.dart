@@ -1,6 +1,7 @@
 import 'package:dictionary/history/historypage.dart';
 import 'package:dictionary/home/homepage.dart';
 import 'package:dictionary/paragraph/paragraphpage.dart';
+import 'package:dictionary/translate/translatepage.dart';
 import 'package:flutter/material.dart';
 
 class NavigationDrawerWidget extends StatefulWidget {
@@ -40,8 +41,13 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
           children: <Widget>[
             const SizedBox(height: 100,),
             buildMenuItem(
-              text: 'Từ điển',
+              text: 'Trang chủ',
               routeName: HomePage.routeName,
+              icon: Icons.home_filled,
+            ),
+            buildMenuItem(
+              text: 'Tra từ',
+              routeName: TranslatePage.routeName,
               icon: Icons.bookmark,
             ),
             buildMenuItem(
@@ -50,22 +56,17 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               icon: Icons.file_copy_rounded,
             ),
             buildMenuItem(
-              text: 'Lịch sử',
+              text: 'Lịch sử tra từ',
               routeName: HistoryPage.routeName,
               icon: Icons.settings_backup_restore,
             ),
             buildMenuItem(
-              text: 'Đánh dấu',
+              text: 'Từ đánh dấu',
               routeName: "",
               icon: Icons.stars_rounded,
             ),
             buildMenuItem(
-              text: 'Ngữ pháp',
-              routeName: "",
-              icon: Icons.book_rounded,
-            ),
-            buildMenuItem(
-              text: 'Video theo chủ đề',
+              text: 'Video ứng dụng',
               routeName: "",
               icon: Icons.play_circle_fill_outlined,
             ),

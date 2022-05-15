@@ -20,8 +20,8 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
     return Column(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.all(10),
-          padding: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: TextFormField(
             controller: textTranslate,
             decoration: const InputDecoration(
@@ -38,7 +38,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
         Row(
           //button cho dịch Việt-Anh
           children:<Widget>[ Container(
-            padding: EdgeInsets.all(30),
+            padding: const EdgeInsets.all(30),
             child: RaisedButton(
               child: const Text('Việt-Anh'),
               onPressed: () async {
@@ -76,7 +76,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
                                           TextSpan(
                                             text:
                                             '${item.replaceAll('<em>', '').replaceAll('</em>', '')} ',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               color: Colors.blue,
                                             ),
                                           ),
@@ -95,7 +95,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
                         }
 
                         // By default, show a loading spinner.
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       },
                     ),
                   );
@@ -104,7 +104,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Alert'),
+                          title: const Text('Alert'),
                           content: Text(
                               'Failed to connect API server. Error: ${response.statusCode}'),
                           actions: [
@@ -112,7 +112,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
                               onPressed: () {
                                 return Navigator.of(context).pop();
                               },
-                              child: Text('OK'),
+                              child: const Text('OK'),
                             ),
                           ],
                         );
@@ -124,7 +124,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
 
             //button cho dịch Anh-Việt
             Container(
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: RaisedButton(
                 child: const Text('Anh-Việt'),
                 onPressed: () async {
@@ -161,7 +161,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
                                             TextSpan(
                                               text:
                                               '${item.replaceAll('<em>', '').replaceAll('</em>', '')} ',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.blue,
                                               ),
                                             ),
@@ -180,7 +180,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
                           }
 
                           // By default, show a loading spinner.
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         },
                       ),
                     );
@@ -189,7 +189,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text('Alert'),
+                            title: const Text('Alert'),
                             content: Text(
                                 'Failed to connect API server. Error: ${response.statusCode}'),
                             actions: [
@@ -197,7 +197,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
                                 onPressed: () {
                                   return Navigator.of(context).pop();
                                 },
-                                child: Text('OK'),
+                                child: const Text('OK'),
                               ),
                             ],
                           );
@@ -232,7 +232,7 @@ class _ParagraphDetailState extends State<ParagraphDetail> {
                                 TextSpan(
                                   text:
                                   '${item.replaceAll('<em>', '').replaceAll('</em>', '')} ',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.blue,
                                   ),
                                 ),
