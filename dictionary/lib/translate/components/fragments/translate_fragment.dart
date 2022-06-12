@@ -1,3 +1,5 @@
+import 'package:dictionary/models/DBHelper.dart';
+import 'package:dictionary/models/modelsDictionary.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -15,6 +17,10 @@ class _TranslateDetailState extends State<TranslateDetail> {
   final textTranslate = TextEditingController();
   late Future<ResponeApi>? futureResponeApi = null;
   late Future<Sentence> futureSentence;
+
+  late Future<List<vaModel>>? vamodel = null;
+  late Future<List<avModel>>? avmodel = null;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,13 +50,20 @@ class _TranslateDetailState extends State<TranslateDetail> {
               onPressed: () async {
                 final response = await http.get(Uri.parse(
                     ('https://api.tracau.vn/WBBcwnwQpV89/s/${textTranslate.text}/vi')));
+                final db = DBHelper();
+                await db.init();
 
+                final av = db.getWord(textTranslate.text);
+                setState((){
+                  avmodel = Future.value(av);
+                });
                 if (response.statusCode == 200) {
                   var responeApi =
                   ResponeApi.fromJson(json.decode(response.body));
 
                   setState(() {
                     futureResponeApi = Future.value(responeApi);
+
                   });
 
                   Expanded(

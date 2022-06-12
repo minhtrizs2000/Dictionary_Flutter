@@ -42,35 +42,59 @@ class _HomeDetailState extends State<HomeDetail> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(20),
+  // Widget build(BuildContext context) {
+  //   return Container(
+  //       padding: const EdgeInsets.all(20),
+  //       child: Column(
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: [
+  //           const SizedBox(height: 20,),
+  //           buildItem(text: 'Tra từ', routeName: TranslatePage.routeName, icon: Icons.bookmark),
+  //           const SizedBox(height: 20,),
+  //           buildItem(text: 'Dịch văn bản', routeName: ParagraphPage.routeName, icon: Icons.file_copy_rounded),
+  //           const SizedBox(height: 20,),
+  //           buildItem(text: 'Lịch sử tra từ', routeName: HistoryPage.routeName, icon: Icons.settings_backup_restore),
+  //           const SizedBox(height: 20,),
+  //           buildItem(text: 'Từ đánh dấu', routeName: '', icon: Icons.stars_rounded),
+  //           const SizedBox(height: 20,),
+  //           buildItem(text: 'Video ứng dụng', routeName: '', icon: Icons.play_circle_fill_outlined),
+  //         ],
+  //       )
+  //   );
+  // }
+  Widget build(BuildContext context){
+    return const SearchResultsListView(
+      searchHistory: null,
+    );
+  }
+}
+
+class SearchResultsListView extends StatelessWidget{
+  final String? searchHistory;
+
+  const SearchResultsListView({
+    Key? key,
+    required this.searchHistory,
+}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    if(searchHistory == null){
+      return Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            // TextField(
-            //   decoration: InputDecoration(
-            //       prefixIcon: const Icon(Icons.search),
-            //       border: const OutlineInputBorder(),
-            //       hintText: 'Tra từ Anh-Việt, Việt-Anh',
-            //       suffix: GestureDetector(
-            //         onTap: (){},
-            //         child: const Icon(Icons.mic_outlined,color: Colors.grey,),
-            //       )
-            //   ),
-            // ),
-            const SizedBox(height: 20,),
-            buildItem(text: 'Tra từ', routeName: TranslatePage.routeName, icon: Icons.bookmark),
-            const SizedBox(height: 20,),
-            buildItem(text: 'Dịch văn bản', routeName: ParagraphPage.routeName, icon: Icons.file_copy_rounded),
-            const SizedBox(height: 20,),
-            buildItem(text: 'Lịch sử tra từ', routeName: HistoryPage.routeName, icon: Icons.settings_backup_restore),
-            const SizedBox(height: 20,),
-            buildItem(text: 'Từ đánh dấu', routeName: '', icon: Icons.stars_rounded),
-            const SizedBox(height: 20,),
-            buildItem(text: 'Video ứng dụng', routeName: '', icon: Icons.play_circle_fill_outlined),
+            Icon(Icons.search, size: 64,),
+            Text("Start searching", style: Theme.of(context).textTheme.headline5,)
           ],
-        )
+        ),
+      );
+    }
+    return ListView(
+      children: List.generate(50, (index) => ListTile(
+        title: Text('$searchHistory'),
+        subtitle: Text(index.toString()),
+      )),
     );
   }
 }
