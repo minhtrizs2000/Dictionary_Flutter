@@ -3,6 +3,7 @@ import 'package:dictionary/home/homepage.dart';
 import 'package:dictionary/paragraph/paragraphpage.dart';
 import 'package:dictionary/translate/translatepage.dart';
 import 'package:flutter/material.dart';
+import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class HomeDetail extends StatefulWidget {
   const HomeDetail({Key? key}) : super(key: key);
@@ -90,7 +91,11 @@ class SearchResultsListView extends StatelessWidget{
         ),
       );
     }
+
+    final fsb = FloatingSearchBar.of(context);
+
     return ListView(
+      padding: EdgeInsets.only(top: fsb.height + fsb.margins.vertical),
       children: List.generate(50, (index) => ListTile(
         title: Text('$searchHistory'),
         subtitle: Text(index.toString()),

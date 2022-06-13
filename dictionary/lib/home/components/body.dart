@@ -101,7 +101,7 @@ class _BodyState extends State<Body> {
           builder: (context, transition){
             return ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: const Material(
+              child: Material(
                 color: Colors.white,
                 elevation: 4,
                 child: Builder(
@@ -133,11 +133,28 @@ class _BodyState extends State<Body> {
                     }else{
                       return Column(
                         mainAxisSize: MainAxisSize.min,
-                        children: filteredSearchHistory.map((e) => ListTile(
-                          title: Text,
-                        )),
-                      )
-                    };
+                        children: filteredSearchHistory.map((history) => ListTile(
+                          title: Text(history, maxLines: 1, overflow: TextOverflow.ellipsis,),
+                          leading: const Icon(Icons.history),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.clear),
+                            onPressed: (){
+                              setState((){
+                                deleteSearchHistory(history);
+                              });
+                            },
+                          ),
+                          onTap: (){
+                            setState((){
+                              putSearchHistoryFirst(history);
+                              selectedHistory = history;
+                            });
+                            controller.close();
+                          },
+                        ),
+                        ).toList(),
+                      );
+                    }
                   },
                 ),
               ),
