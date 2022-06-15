@@ -48,8 +48,6 @@ class _TranslateDetailState extends State<TranslateDetail> {
             child: RaisedButton(
               child: const Text('Việt-Anh'),
               onPressed: () async {
-                final response = await http.get(Uri.parse(
-                    ('https://api.tracau.vn/WBBcwnwQpV89/s/${textTranslate.text}/vi')));
                 final db = DBHelper();
                 await db.init();
 
@@ -57,80 +55,7 @@ class _TranslateDetailState extends State<TranslateDetail> {
                 setState((){
                   avmodel = Future.value(av);
                 });
-                if (response.statusCode == 200) {
-                  var responeApi =
-                  ResponeApi.fromJson(json.decode(response.body));
 
-                  setState(() {
-                    futureResponeApi = Future.value(responeApi);
-
-                  });
-
-                  Expanded(
-                    child: futureResponeApi == null
-                        ? Container()
-                        : FutureBuilder<ResponeApi>(
-                      future: futureResponeApi,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return ListView.builder(
-                            itemCount: snapshot.data!.sentences.length,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                title: Text.rich(
-                                  TextSpan(
-                                    // text:
-                                    //    '${snapshot.data!.sentences[index].fields.vi}',
-                                    children: [
-                                      for (var item in snapshot.data!
-                                          .sentences[index].fields.vi
-                                          .split(' '))
-                                        if (item.contains('<em>'))
-                                          TextSpan(
-                                            text:
-                                            '${item.replaceAll('<em>', '').replaceAll('</em>', '')} ',
-                                            style: const TextStyle(
-                                              color: Colors.blue,
-                                            ),
-                                          ),
-                                    ],
-                                  ),
-                                ),
-
-                                //  title: Text(snapshot.data!.sentences[index].fields.vi),
-                                subtitle: Text(snapshot
-                                    .data!.sentences[index].fields.en),
-                              );
-                            },
-                          );
-                        } else if (snapshot.hasError) {
-                          return Text("${snapshot.error}");
-                        }
-
-                        // By default, show a loading spinner.
-                        return const CircularProgressIndicator();
-                      },
-                    ),
-                  );
-                } else {
-                  return showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Alert'),
-                          content: Text(
-                              'Failed to connect API server. Error: ${response.statusCode}'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                return Navigator.of(context).pop();
-                              },
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        );
-                      });
-                }
               },
             ),
           ),
